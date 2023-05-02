@@ -25,7 +25,7 @@ describe('TodoListView', () => {
     model.addNote('Cancel subscription to Netflix');
     model.addNote('Go on holiday');
     view.displayNotes();
-    
+
     expect(document.querySelectorAll('div').length).toBe(3);
     expect(document.querySelectorAll('div.note').length).toBe(2);
     expect(document.querySelectorAll('p').length).toBe(2);
@@ -53,5 +53,37 @@ describe('TodoListView', () => {
     expect(document.querySelectorAll('div').length).toBe(2);
     expect(document.querySelectorAll('div.note').length).toBe(1);
     expect(document.querySelectorAll('p')[0].textContent).toEqual("This is a new note test");
+  });
+  
+  test('should create a single new note when the button is clicked multiple times', () => {
+    const inputEl = document.querySelector('#new-note-input');
+    inputEl.value = "This is a new note test";
+    
+    const buttonEl = document.querySelector('#new-note-button');
+    buttonEl.click();
+    buttonEl.click();
+    buttonEl.click();
+
+    expect(document.querySelectorAll('div').length).toBe(2);
+    expect(document.querySelectorAll('div.note').length).toBe(1);
+    expect(document.querySelectorAll('p')[0].textContent).toEqual("This is a new note test");
+  });
+  
+  test('should create multiple new notes but only one per input', () => {
+    const inputEl = document.querySelector('#new-note-input');
+    inputEl.value = "This is a new note test";
+    
+    const buttonEl = document.querySelector('#new-note-button');
+    buttonEl.click();
+    buttonEl.click();
+
+    inputEl.value = "This is another new note test";
+    
+    buttonEl.click();
+    buttonEl.click();
+
+    expect(document.querySelectorAll('div').length).toBe(3);
+    expect(document.querySelectorAll('div.note').length).toBe(2);
+    expect(document.querySelectorAll('p')[1].textContent).toEqual("This is another new note test");
   });
 });

@@ -8,7 +8,9 @@ class NoteView {
 
     this.buttonEl.addEventListener('click', () => {
       let newNote = document.querySelector('#new-note-input').value;
-      this.addNewNote(newNote);
+      if (newNote.length > 0) {
+        this.addNewNote(newNote);
+      }
     });
   }
 
