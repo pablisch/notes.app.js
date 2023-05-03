@@ -36,7 +36,7 @@ h1 {
   border-radius: 4px;
 }
 
-#new-note-button {
+button {
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   padding: 7px 15px;
@@ -46,9 +46,13 @@ h1 {
   color: #606060;
 }
 
-#new-note-button:hover {
+button:hover {
   background-color: #474747;
   color: #fff;
+}
+
+#test-button {
+  margin-left: 30px;
 }
 
 

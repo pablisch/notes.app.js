@@ -1,10 +1,10 @@
-const NoteModel = require('./noteModel');
+const NotesModel = require('./notesModel');
 
 let model;
 
-describe('NoteModel', () => {
+describe('NotesModel', () => {
   beforeEach(() => {
-    model = new NoteModel();
+    model = new NotesModel();
   });
 
   test('should return an empty list of notes on my todo list', () => {

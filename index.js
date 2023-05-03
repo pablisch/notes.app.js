@@ -1,12 +1,12 @@
-const NoteModel = require("./noteModel");
-const NoteView = require("./noteView");
-const NoteClient = require("./noteClient");
+const NotesModel = require('./notesModel');
+const NotesView = require('./notesView');
+const NotesClient = require('./notesClient');
 
-const client = new NoteClient();
-const model = new NoteModel();
+const client = new NotesClient();
+const model = new NotesModel();
 // model.addNote('Make a notes app');
 
-const view = new NoteView(model, client);
+const view = new NotesView(model, client);
 
 view.displayNotes();
 
