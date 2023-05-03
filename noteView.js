@@ -1,15 +1,17 @@
 // const NoteModel = require('./noteModel');
 
 class NoteView {
-  constructor(model) {
+  constructor(model, client) {
     this.buttonEl = document.querySelector('#new-note-button');
     this.model = model;
+    this.client = client;
     this.mainContainerEl = document.querySelector('.main_container');
 
     this.buttonEl.addEventListener('click', () => {
       let newNote = document.querySelector('#new-note-input').value;
       if (newNote.length > 0) {
         this.addNewNote(newNote);
+        this.client.getNotesFromDb();
       }
     });
   }
