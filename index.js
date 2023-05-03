@@ -8,6 +8,6 @@ const model = new NotesModel();
 
 const view = new NotesView(model, client);
 
-view.displayNotes();
+view.displayNotesFromApi();
 
 // console.log(model.getNotes());

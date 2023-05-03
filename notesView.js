@@ -21,11 +21,15 @@ class NotesView {
   }
 
   displayNotesFromApi() { // new function for notes from fetch API
-    this.client.loadData((notes) => {
+    this.client.loadData((notes) => { // error handling to pass in 2nd parameter ?????
       // console.log(notes);
       this.model.setNotes(notes);
       this.displayNotes()
     });
+  }
+
+  displayError() {
+    console.log("hello")
   }
 
   clearInputField() {
@@ -33,6 +37,7 @@ class NotesView {
   }
 
   addNewNote(newNote) {
+    this.client.createNote({ content: newNote });
     this.model.addNote(newNote);
     this.clearInputField();
     this.displayNotes();

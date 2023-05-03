@@ -140,4 +140,26 @@ describe('TodoListView', () => {
       'This note is coming from the server'
     );
   });
+
+  test('should display notes from fetch request', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    const fakeClient = new Client();
+
+    fakeClient.loadData.mockImplementation(() => ['This note is coming from the server']);
+
+    // const fakeClient = {
+    //   loadData: (callback) => ['This note is coming from the server']
+    // }
+
+    console.log(fakeClient)
+    const model = new Model();
+    const view = new View(model, fakeClient);
+    
+    view.displayNotesFromApi()
+
+    expect(document.querySelectorAll('div.note').length).toBe(1);
+    expect(document.querySelectorAll('p')[0].textContent).toEqual(
+      'This note is coming from the server'
+    );
+  });
 });
