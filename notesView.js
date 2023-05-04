@@ -15,22 +15,18 @@ class NotesView {
       }
     });
 
-    this.testButtonEl.addEventListener('click', () => {
+    this.testButtonEl.addEventListener('click', () => { // Used for testing - Hidden by CSS - unlikley to be needed again
       this.displayNotesFromApi();
     });
   }
 
   displayNotesFromApi() { // new function for notes from fetch API
-    this.client.loadData((notes) => { // error handling to pass in 2nd parameter ?????
-      console.log(notes);
+    this.client.loadData((notes) => { 
+      // console.log(notes); // May be useful for browser console view BUT commented for testing
       this.model.setNotes(notes);
+      
       this.displayNotes()
-      return "hello"
     });
-  }
-
-  displayError() {
-    console.log("hello")
   }
 
   clearInputField() {
@@ -47,6 +43,15 @@ class NotesView {
   clearNotes() {
     const allNotes = document.querySelectorAll('.note');
     allNotes.forEach((note) => note.remove());
+  }
+
+  displayError() {
+    const errorEl = document.createElement('h3');
+    errorEl.className = 'bigFatError';
+    const errorMessage = "Ooops... It's all gone wrong!";
+    errorEl.textContent = errorMessage;
+    const errorDivEl = document.querySelector('#error_container');
+    errorDivEl.append(errorEl);
   }
 
   displayNotes() {
