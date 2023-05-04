@@ -101,62 +101,64 @@ describe('TodoListView', () => {
   //   );
   // });
 
-  xtest('should display notes from fetch request', () => {
-    document.body.innerHTML = fs.readFileSync('./index.html');
-    const fakeClient = {
-      loadData: (callback) => ['This note is coming from the server']
-    }
+  // xtest('should display notes from fetch request', () => {
+  //   document.body.innerHTML = fs.readFileSync('./index.html');
+  //   const fakeClient = {
+  //     loadData: (callback) => ['This note is coming from the server']
+  //   }
 
-    console.log(fakeClient)
-    const model = new Model();
-    const view = new View(model, fakeClient);
+  //   console.log(fakeClient)
+  //   const model = new Model();
+  //   const view = new View(model, fakeClient);
     
-    view.displayNotesFromApi()
+  //   view.displayNotesFromApi()
 
-    expect(document.querySelectorAll('div.note').length).toBe(1);
-    expect(document.querySelectorAll('p')[0].textContent).toEqual(
-      'This note is coming from the server'
-    );
-  });
+  //   expect(document.querySelectorAll('div.note').length).toBe(1);
+  //   expect(document.querySelectorAll('p')[0].textContent).toEqual(
+  //     'This note is coming from the server'
+  //   );
+  // });
 
-  xtest('should display notes from fetch request', () => {
-    document.body.innerHTML = fs.readFileSync('./index.html');
-    const fakeClient = new Client();
+  // xtest('should display notes from fetch request', () => {
+  //   document.body.innerHTML = fs.readFileSync('./index.html');
+  //   const fakeClient = new Client();
 
-    fakeClient.loadData.mockImplementation(() => ['This note is coming from the server']);
+  //   fakeClient.loadData.mockImplementation(() => ['This note is coming from the server']);
 
-    // const fakeClient = {
-    //   loadData: (callback) => ['This note is coming from the server']
-    // }
+  //   // const fakeClient = {
+  //   //   loadData: (callback) => ['This note is coming from the server']
+  //   // }
 
-    console.log(fakeClient)
-    const model = new Model();
-    const view = new View(model, fakeClient);
+  //   console.log(fakeClient)
+  //   const model = new Model();
+  //   const view = new View(model, fakeClient);
     
-    view.displayNotesFromApi()
+  //   view.displayNotesFromApi()
 
-    expect(document.querySelectorAll('div.note').length).toBe(1);
-    expect(document.querySelectorAll('p')[0].textContent).toEqual(
-      'This note is coming from the server'
-    );
-  });
+  //   expect(document.querySelectorAll('div.note').length).toBe(1);
+  //   expect(document.querySelectorAll('p')[0].textContent).toEqual(
+  //     'This note is coming from the server'
+  //   );
+  // });
 
   test('should display notes from fetch request', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     const fakeClient = new Client();
 
-    fakeClient.loadData.mockImplementation(() => ['This note is coming from the server']);
+    fakeClient.loadData.mockImplementation((callback) => callback(['This note is coming from the server']));
+    // fakeClient.loadData.mockImplementation() = ['This note is coming from the server'];
 
     // const fakeClient = {
     //   loadData: (callback) => ['This note is coming from the server']
     // }
 
-    console.log(fakeClient)
+    console.log(fakeClient.loadData.mock.calls)
     const model = new Model();
     const view = new View(model, fakeClient);
+    console.log(view.buttonEl);
     
     view.displayNotesFromApi()
-
+    // expect(view.displayNotesFromApi()).toEqual('hello');
     expect(document.querySelectorAll('div.note').length).toBe(1);
     expect(document.querySelectorAll('p')[0].textContent).toEqual(
       'This note is coming from the server'
