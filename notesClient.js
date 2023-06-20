@@ -4,7 +4,6 @@ class NotesClient {
       .then(this.handleErrors)
       .then((response) => response.json())
       .then((data) => callback(data))
-      // .catch((error) => displayError(error) );
       .catch((error) => callback(error));
   }
   // loadData(callback, reject) {
@@ -22,11 +21,11 @@ class NotesClient {
     return response;
   }
 
-  createNote(callback) {
-    fetch('http://localhost:3000/notes')
-      .then((response) => response.json())
-      .then((data) => callback(data));
-  }
+  // createNote(callback) {
+  //   fetch('http://localhost:3000/notes')
+  //     .then((response) => response.json())
+  //     .then((data) => callback(data));
+  // }
 
   async createNote(data) {
     try {
